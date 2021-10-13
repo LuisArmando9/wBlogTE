@@ -23,6 +23,6 @@ class BlogLinks extends Component
      */
     public function render()
     {
-        return view('components.blog-links');
+        return view('components.blog.blog-links');
     }
 }

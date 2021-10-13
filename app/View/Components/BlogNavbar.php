@@ -23,6 +23,6 @@ class BlogNavbar extends Component
      */
     public function render()
     {
-        return view('components.blog-navbar');
+        return view('components.blog.blog-navbar');
     }
 }

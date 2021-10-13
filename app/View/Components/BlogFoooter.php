@@ -23,6 +23,6 @@ class BlogFoooter extends Component
      */
     public function render()
     {
-        return view('components.blog-foooter');
+        return view('components.blog.blog-foooter');
     }
 }

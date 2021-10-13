@@ -25,6 +25,6 @@ class Navbar extends Component
     {
         $comments = Comment::where("active", "1")->get(["id", "userName"]);
 
-        return view('components.navbar')->with("comments", $comments);
+        return view('components.admin.navbar')->with("comments", $comments);
     }
 }

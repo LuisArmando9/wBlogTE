@@ -24,6 +24,6 @@ class BlogHeader extends Component
      */
     public function render()
     {
-        return view('components.blog-header');
+        return view('components.blog.blog-header');
     }
 }

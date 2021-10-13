@@ -24,7 +24,7 @@ class CategoryController extends Controller
      
         $search = $request->get("search");
         if(is_null($search)){
-            return view("Admin.category.index")
+            return view("admin.category.index")
             ->with("categories",  Category::paginate())
             ->with("containsPaginate", true);
         }
@@ -35,7 +35,7 @@ class CategoryController extends Controller
             return redirect()->route("category.index")
             ->with("toast_error", "El texto ingresado es invalido");
         }
-        return view("Admin.category.index")
+        return view("admin.category.index")
         ->with("categories", Category::where("categoryName", "LIKE", "%$search%")->get())
         ->with("containsPaginate", false);
     }
@@ -85,7 +85,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrfail($id);
-        return view("Admin.Category.edit")
+        return view("admin.Category.edit")
         ->with("category", $category);
     }
 

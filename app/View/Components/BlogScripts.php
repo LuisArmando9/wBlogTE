@@ -23,6 +23,6 @@ class BlogScripts extends Component
      */
     public function render()
     {
-        return view('components.blog-scripts');
+        return view('components.blog.blog-scripts');
     }
 }
