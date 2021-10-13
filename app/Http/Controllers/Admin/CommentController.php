@@ -79,7 +79,7 @@ class CommentController extends Controller
     {
        
         $post = Post::where("id", $comment->postId)->first(["title"]);
-        return view("Admin.Comment.edit")
+        return view("admin.Comment.edit")
         ->with("comment", $comment)
         ->with("post", $post);
     }

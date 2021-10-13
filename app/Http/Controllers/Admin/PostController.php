@@ -46,7 +46,7 @@ class PostController extends Controller
             return redirect()->route("post.index")
             ->with("toast_error", "El texto ingresado es invalido");
         }
-        return view("Admin.Post.index")
+        return view("admin.Post.index")
         ->with("posts", Post::where("title", "LIKE", "%$search%")->get())
         ->with("containsPaginate", false);
         
@@ -60,7 +60,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return view("Admin.Post.create")
+        return view("admin.Post.create")
         ->with("categories", $categories);
     }
 
