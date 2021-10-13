@@ -12,7 +12,7 @@
     <h1 class="mb-3 bread">{{('BLOG')}}</h1>
 @endsection
 @section("header")
-    <x-blogheader />
+    <x-BlogHeader />
 @endsection
 @section("content")
     <div class="row">

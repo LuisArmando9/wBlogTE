@@ -13,7 +13,7 @@
 </head>
 <body>
     <!--Navbar-->
-    <x-blognavbar/>
+    <x-BlogNavbar/>
   
     <!--end navbar-->
     <!--header-->
@@ -27,7 +27,7 @@
     </section>
     <!---------END CONTENT----->
     <!--footer-->
-    <x-blogfoooter/>
+    <x-BlogFoooter/>
     <!--end footer-->
     @include('sweetalert::alert')
 </body>

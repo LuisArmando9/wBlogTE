@@ -1,6 +1,6 @@
 @extends("blog.layouts.app")
 @section("header")
-    <x-blogheader isIndexPage=true;/>
+    <x-BlogHeader isIndexPage=true;/>
 @endsection
 @section("content")
     <div class="row justify-content-center mb-5 pb-3">
