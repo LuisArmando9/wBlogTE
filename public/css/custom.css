@@ -1,0 +1,75 @@
+.form-group__file {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    min-width: 130px;
+    height: 180px;
+  }
+  
+  .file-label {
+    margin: 10px 0;
+  }
+  
+  .file-input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 130px;
+    height: 180px;
+    cursor: pointer;
+    z-index: 100;
+  }
+  
+  .file-preview-background {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 130px;
+    height: 140px;
+    background-color: #f7f7f7;
+    border: 2px dashed #dfdfdf;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-align: center;
+    color: #bbb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  .file-preview {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 46px;
+    left: 8px;
+    border-radius: 65px;
+    z-index: 10;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+  }
+.btn-bell-n{
+    position: relative;
+    font-size: 15px;
+}
+.counter{
+    font-size: 9px;
+    position: absolute;
+    top:0;
+    right: -9px;
+    padding: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+}
+.notification-hover:hover{
+  background:rgba(0,0,0,0.3);
+}
