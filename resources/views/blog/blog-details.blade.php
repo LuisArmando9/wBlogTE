@@ -1,5 +1,4 @@
 @extends("blog.layouts.app")
-
 @section("header-title")
     <p class="breadcrumbs">
         <span class="mr-2">
@@ -19,7 +18,7 @@
     <div class="row">
         <div class="col-lg-8 ftco-animate">
           	<p>
-              <img src="{{asset('img/img-post/'.$post->image);}}" alt="" class="img-fluid">
+              <img src="https://testblogsola.000webhostapp.com/images/{{$post->image}}" alt="" class="img-fluid">
             </p>
             <h2 class="mb-3">{{$post->title}}</h2>
             <p>

@@ -79,8 +79,8 @@ class PostController extends Controller
         $request->validate(self::RULES);
         $response = $request->except(['_token']);
         $fileName = time().'.'.$request->file("image")->extension();  
-        $path = public_path('img\img-post');
-        $request->file("image")->move($path, $fileName);
+        $path = $request->file("image")->getRealPath();
+        Storage::disk('ftp')->put($fileName, fopen($path ,'r+'));
         $response["image"] = $fileName;
         Post::create($response);
         return redirect()->route("post.index")->with('toast_success', 'Se ha creado un nuevo post');;
@@ -136,10 +136,9 @@ class PostController extends Controller
                 'root' => public_path("img/img-post/"),
             ]);
             $fileName = time().'.'.$request->file("image")->extension();
-            $path = public_path('img\img-post');
-            $request->file("image")->move($path, $fileName);
+            $path =  $request->file("image")->getRealPath();
             $response["image"] = $fileName;
-            $disk->delete($post->image);
+            Storage::disk('ftp')->put($fileName, fopen($path ,'r+'));
         }
  
         $post->update($response);

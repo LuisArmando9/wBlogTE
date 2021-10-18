@@ -11,6 +11,7 @@ class Navbar extends Component
      *
      * @return void
      */
+    const MAX_COMMENTS = 9;
     public function __construct()
     {
         //
@@ -23,8 +24,15 @@ class Navbar extends Component
      */
     public function render()
     {
-        $comments = Comment::where("active", "1")->get(["id", "userName"]);
-
-        return view('components.admin.navbar')->with("comments", $comments);
+        $comments = Comment::where("active", "1");
+        $hasMaxComments = false;
+        if($comments->count() > self::MAX_COMMENTS)
+        {
+            $comments = $comments->skip(0)->take(self::MAX_COMMENTS);
+            $hasMaxComments = true;
+        }
+        return view('components.admin.navbar')
+        ->with("comments", $comments->get())
+        ->with("hasMaxComments", $hasMaxComments);
     }
 }

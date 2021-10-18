@@ -14,6 +14,12 @@ class CommentController extends Controller
         "comment" => "required|string|min:30|max:255",
         "postId" => "required|numeric|gt:0"
     ];
+    const MAX_COMMENTS_FOR_PAGINATING = 10;
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['edit', 'update', 'index', 'destroy']);
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +27,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-    
+
+        return view("admin.comment.index")
+        ->with("comments",  Comment::paginate(self::MAX_COMMENTS_FOR_PAGINATING));
     }
 
     /**
@@ -77,7 +85,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-       
+        $this->middleware("auth");
         $post = Post::where("id", $comment->postId)->first(["title"]);
         return view("admin.Comment.edit")
         ->with("comment", $comment)
@@ -93,7 +101,7 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-  
+        $this->middleware(["auth"]);
         $request->validate(["active" => "required|boolean"]);
         $comment->update($request->all());
         return redirect()->route("post.index");
@@ -107,7 +115,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-     
+        
         $comment->delete();
         return redirect()->route("post.index");
     }
