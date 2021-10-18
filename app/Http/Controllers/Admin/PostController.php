@@ -35,7 +35,7 @@ class PostController extends Controller
     {
         $search = $request->get("search");
         if(is_null($search)){
-            return view("Admin.Post.index")
+            return view("admin.post.index")
             ->with("posts", Post::paginate())
             ->with("containsPaginate", true);
         }
@@ -46,7 +46,7 @@ class PostController extends Controller
             return redirect()->route("post.index")
             ->with("toast_error", "El texto ingresado es invalido");
         }
-        return view("admin.Post.index")
+        return view("admin.post.index")
         ->with("posts", Post::where("title", "LIKE", "%$search%")->get())
         ->with("containsPaginate", false);
         
@@ -60,7 +60,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return view("admin.Post.create")
+        return view("admin.post.create")
         ->with("categories", $categories);
     }
 
@@ -106,7 +106,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view("admin.Post.edit")
+        return view("admin.post.edit")
         ->with("post", $post)
         ->with("categories", Category::get(["id", "categoryName"]));
     }

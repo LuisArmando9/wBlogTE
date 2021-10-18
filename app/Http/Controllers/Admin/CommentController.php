@@ -87,7 +87,7 @@ class CommentController extends Controller
     {
         $this->middleware("auth");
         $post = Post::where("id", $comment->postId)->first(["title"]);
-        return view("admin.Comment.edit")
+        return view("admin.comment.edit")
         ->with("comment", $comment)
         ->with("post", $post);
     }
