@@ -35,7 +35,7 @@ class PostController extends Controller
     {
         $search = $request->get("search");
         if(is_null($search)){
-            return view("admin.post.index")
+            return view("admin.Post.index")
             ->with("posts", Post::paginate())
             ->with("containsPaginate", true);
         }
@@ -60,7 +60,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return view("admin.post.create")
+        return view("admin.Post.create")
         ->with("categories", $categories);
     }
 
@@ -106,7 +106,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view("admin.post.edit")
+        return view("admin.Post.edit")
         ->with("post", $post)
         ->with("categories", Category::get(["id", "categoryName"]));
     }
