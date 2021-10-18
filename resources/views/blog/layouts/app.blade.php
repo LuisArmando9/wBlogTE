@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ ('Blog') }}</title>
-    <x-bloglinks/>
+    <x-BlogLinks/>
     
 </head>
 <body>
