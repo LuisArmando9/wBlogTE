@@ -32,6 +32,6 @@
     @include('sweetalert::alert')
 </body>
 
-<x-blogscripts/>
+<x-BlogScripts/>
 @yield("custom-scripts")
 </html>
