@@ -28,7 +28,7 @@ class CommentController extends Controller
     public function index()
     {
 
-        return view("admin.comment.index")
+        return view("admin.Comment.index")
         ->with("comments",  Comment::paginate(self::MAX_COMMENTS_FOR_PAGINATING));
     }
 
@@ -87,7 +87,7 @@ class CommentController extends Controller
     {
         $this->middleware("auth");
         $post = Post::where("id", $comment->postId)->first(["title"]);
-        return view("admin.comment.edit")
+        return view("admin.Comment.edit")
         ->with("comment", $comment)
         ->with("post", $post);
     }
