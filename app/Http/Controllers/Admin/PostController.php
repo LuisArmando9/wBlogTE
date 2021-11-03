@@ -9,6 +9,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use Cloudder;
+use Cloudinary;
+use Cloudinary\Configuration\Configuration;
+/*
+CLOUDINARY DOCUMENTATION
+https://github.com/cloudinary-labs/cloudinary-laravel
+https://github.com/cloudinary-labs/cloudinary-laravel/blob/master/src/CloudinaryEngine.php
+https://github.com/cloudinary-labs/cloudinary-laravel/blob/master/src/Facades/Cloudinary.php
+*/
 
 class PostController extends Controller
 {
@@ -31,6 +40,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private function getPublicId($url){
+        $words = explode(',', $url);
+        $name = $words[count($words)-1];
+        $words = explode('.', $name);
+        return "blog/{$words[0]}";
+    }
     public function index(Request $request)
     {
         $search = $request->get("search");
@@ -70,6 +85,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
     public function store(Request $request)
     {
 
@@ -77,14 +93,11 @@ class PostController extends Controller
             $request["active"] = 0;
         }
         $request->validate(self::RULES);
-        $response = $request->except(['_token']);
-        $fileName = time().'.'.$request->file("image")->extension();  
-        $path = $request->file("image")->getRealPath();
-        Storage::disk('ftp')->put($fileName, fopen($path ,'r+'));
-        $response["image"] = $fileName;
+        $response = $request->except(['_token']); 
+        $result = $request->file("image")->storeOnCloudinary('blog');
+        $response["image"] = str_replace("/",",", $result->getSecurePath());
         Post::create($response);
-        return redirect()->route("post.index")->with('toast_success', 'Se ha creado un nuevo post');;
-      
+        return redirect()->route("post.index")->with('toast_success', 'Se ha creado un nuevo post');
     }
 
     /**
@@ -124,21 +137,15 @@ class PostController extends Controller
         if (!$request->hasFile("image")) { 
             unset($newRules["image"]);      
         }
-        
         if(is_null($request->post("active"))){
             $request["active"] = 0;
         }
         $request->validate($newRules);
         $response = $request->except(['_token', "_method"]);
         if($request->hasFile("image")){
-            $disk = Storage::build([
-                'driver' => 'local',
-                'root' => public_path("img/img-post/"),
-            ]);
-            $fileName = time().'.'.$request->file("image")->extension();
-            $path =  $request->file("image")->getRealPath();
-            $response["image"] = $fileName;
-            Storage::disk('ftp')->put($fileName, fopen($path ,'r+'));
+            Cloudinary::destroy($this->getPublicId($post->image));
+            $result = $request->file("image")->storeOnCloudinary('blog');
+            $response["image"] = str_replace("/",",", $result->getSecurePath());
         }
  
         $post->update($response);

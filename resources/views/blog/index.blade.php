@@ -13,8 +13,9 @@
         @foreach($posts as $post)
             <div class="col-md-4 ftco-animate">
                 <div class="blog-entry">
+                 
                    
-                    <a href="/blog-details/{{$post->id}}" class="block-20" style="background-image: url(https://testblogsola.000webhostapp.com/images/{{$post->image}});">
+                    <a href="/blog-details/{{$post->id}}" class="block-20" style="background-image: url({{getUrl($post->image)}});">
                     </a>
                     <div class="text d-flex py-4">
                         <div class="meta mb-3">

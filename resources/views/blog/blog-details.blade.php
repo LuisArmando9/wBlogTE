@@ -18,7 +18,8 @@
     <div class="row">
         <div class="col-lg-8 ftco-animate">
           	<p>
-              <img src="https://testblogsola.000webhostapp.com/images/{{$post->image}}" alt="" class="img-fluid">
+        
+              <img src="{{getUrl($post->image)}}" alt="" class="img-fluid">
             </p>
             <h2 class="mb-3">{{$post->title}}</h2>
             <p>
@@ -109,7 +110,8 @@
                 <h3>Publicaciones recientes</h3>
                 @foreach($lastPosts as $lastpost)
                     <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url({{asset('img/img-post/'.$lastpost->image);}});"></a>
+                   
+                        <a class="blog-img mr-4" style="background-image: url({{getUrl($lastpost->image)}});"></a>
                         <div class="text">
                             <h3 class="heading">
                                 <a href="/blog-details/{{$lastpost->id}}">

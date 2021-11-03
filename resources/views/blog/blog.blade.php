@@ -4,10 +4,10 @@
     <p class="breadcrumbs">
         <span class="mr-2">
             <a href="/">Home</a>
-        </span> 
+        </span>
         <span class="mr-2">
             <a href="/blog">Blog</a>
-        </span> 
+        </span>
     </p>
     <h1 class="mb-3 bread">{{('BLOG')}}</h1>
 @endsection
@@ -19,7 +19,7 @@
         @foreach($posts as $post)
             <div class="col-md-4 ftco-animate">
 				<div class="blog-entry">
-					<a href="/blog-details/{{$post->id}}" class="block-20" style="background-image: url(https://testblogsola.000webhostapp.com/images/{{$post->image}});"></a>
+					<a href="/blog-details/{{$post->id}}" class="block-20" style="background-image: url({{getUrl($post->image)}});"></a>
 					<div class="text d-flex py-4">
 						<div class="meta mb-3">
                             <div>
@@ -38,7 +38,7 @@
 				</div>
           	</div>
         @endforeach
-        
+
     </div>
     <div class="row mt-5">
           <div class="col text-center">
