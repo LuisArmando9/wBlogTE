@@ -30,7 +30,7 @@ class CommentController extends Controller
         $comments = Comment::join("post",  "comment.postId",  "=","post.id" )
         ->select("post.title", "comment.*")
         ->paginate();
-        return view("admin.comment.index")
+        return view("admin.Comment.index")
         ->with("comments", $comments);
     }
 
