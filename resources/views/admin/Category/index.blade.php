@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row mb-3">
         <div class="col-sm-3">
-            <a class="btn btn-primary" href="{{ route('category.create')}}">Agregar</a>
+            <a class="btn btn-info" href="{{ route('category.create')}}">Agregar</a>
         </div>
         <div class="col-sm-8">
             <form class="form-inline" method="GET" action="{{route('category.index')}}">

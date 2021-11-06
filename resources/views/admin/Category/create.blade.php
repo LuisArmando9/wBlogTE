@@ -2,7 +2,7 @@
 
 @section("content")
 <div class="container">
-    <h4 class="text-center">Crear nueva categoria</h4>
+    <h4 class="text-center">Nueva  categoria</h4>
     <form method="POST" action="{{route('category.store')}}">
         @csrf
         <div class="form-group row">
