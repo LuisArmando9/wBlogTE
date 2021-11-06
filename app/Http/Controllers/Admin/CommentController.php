@@ -29,7 +29,7 @@ class CommentController extends Controller
     {
         $comments = Comment::join("post",  "comment.postId",  "=","post.id" )
         ->select("post.title", "comment.*")
-        ->paginate(self::MAX_COMMENTS_FOR_PAGINATING);
+        ->paginate();
         return view("admin.comment.index")
         ->with("comments", $comments);
     }
@@ -89,7 +89,7 @@ class CommentController extends Controller
     {
         $this->middleware("auth");
         $post = Post::where("id", $comment->postId)->first(["title"]);
-        return view("admin.comment.edit")
+        return view("admin.Comment.edit")
         ->with("comment", $comment)
         ->with("post", $post);
     }
