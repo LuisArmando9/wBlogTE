@@ -27,9 +27,11 @@ class CommentController extends Controller
      */
     public function index()
     {
-
-        return view("admin.Comment.index")
-        ->with("comments",  Comment::paginate(self::MAX_COMMENTS_FOR_PAGINATING));
+        $comments = Comment::join("post",  "comment.postId",  "=","post.id" )
+        ->select("post.title", "comment.*")
+        ->paginate(self::MAX_COMMENTS_FOR_PAGINATING);
+        return view("admin.comment.index")
+        ->with("comments", $comments);
     }
 
     /**
@@ -55,7 +57,7 @@ class CommentController extends Controller
         $request->validate(self::RULES);
         $id = $request['postId'];
         Post::findOrfail($id);
-        $request["active"] = 1;
+        $request["active"] = 0;
         Comment::create($request->all());
         return 
         back()
@@ -87,7 +89,7 @@ class CommentController extends Controller
     {
         $this->middleware("auth");
         $post = Post::where("id", $comment->postId)->first(["title"]);
-        return view("admin.Comment.edit")
+        return view("admin.comment.edit")
         ->with("comment", $comment)
         ->with("post", $post);
     }
@@ -104,7 +106,12 @@ class CommentController extends Controller
         $this->middleware(["auth"]);
         $request->validate(["active" => "required|boolean"]);
         $comment->update($request->all());
-        return redirect()->route("post.index");
+        if($request->all()['active']){
+            return redirect()->route("comment.index")
+            ->with("toast_success", "Se acepto el comentario");
+        }
+        return redirect()->route("comment.index")
+        ->with("toast_error", "No se acepto el comentario");
     }
 
     /**

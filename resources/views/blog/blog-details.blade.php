@@ -88,14 +88,14 @@
         </div> 
         <!--------categories---->
         <div class="col-lg-4 sidebar pl-lg-5 ftco-animate">
-            <div class="sidebar-box">
+            <!--<div class="sidebar-box">
                 <form action="#" class="search-form">
                     <div class="form-group">
                         <span class="fa fa-search"></span>
                         <input type="text" class="form-control" placeholder="Escribe una palabra y presiona enter">
                     </div>
                 </form>
-            </div>
+            </div>-->
             <div class="sidebar-box ftco-animate">
                 <div class="categories">
                     <h3>Catergorias</h3>

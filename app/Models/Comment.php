@@ -18,4 +18,7 @@ class Comment extends Model
         'postId',
         "created_at"
     ];
+    public static function getCountNewComments(){
+      return Comment::where("active", "1")->get()->count();
+    }
 }

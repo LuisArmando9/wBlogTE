@@ -12,7 +12,7 @@ class BlogDetailsController extends Controller
 {
     public function index($id){
         $post = Post::findOrFail($id); 
-        $comments = Comment::where("postId", $id)->where("active", "0")->get();
+        $comments = Comment::where("postId", $id)->where("active", "1")->get();
         $category =   Category::where("id", $post->categoryId)->first();
         $categories =  Category::get();
         $lastPosts = Post::orderByDesc("created_at")

@@ -1,55 +1,69 @@
+
 @extends('admin.layouts.app')
 
 @section("content")
-<div class="container">
-    <div class="row mb-3">
-        <div class="col-sm-3">
-            <a class="btn btn-info" href="{{ route('category.create')}}">Agregar</a>
-        </div>
-        <div class="col-sm-8">
-            <form class="form-inline" method="GET" action="{{route('category.index')}}">
-                <div class="form-group" >
-                    <label for="inputPassword6">Nombre</label>
-                    <input type="text" name="search" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
-                </div>
-                <button class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i></button>
-            </form>
+
+<x-adminlte-card title="Categorias" theme="lightblue" theme-mode="outline"
+    icon="fas fa-lg  fa-list " class="mt-2">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-sm-2">
+                
+                <a class="btn btn-outline-primary p-2 " href="{{ route('category.create')}}"><i class="fas fa-plus"></i>  Agregar</a>
+            </div>
+            
+            <div class="col-sm-8">
+                <form class="form-inline" method="GET" action="{{route('category.index')}}">
+                  
+                    <x-adminlte-input name="search"  placeholder="Titulo de la publicación " igroup-size="md">
+                        <x-slot name="appendSlot">
+                            <x-adminlte-button type="submit"  theme="outline-primary" label="Buscar"/>
+                        </x-slot>
+                        <x-slot name="prependSlot">
+                            <div class="input-group-text text-primary">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </x-slot>
+                    </x-adminlte-input>
+                </form>
+
+            </div>
 
         </div>
-
-    </div>
-    <table class="table">
-    <thead>
-        <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Acción</th>
-      
-        </tr>
-    </thead>
-        <tbody>
-            @foreach($categories as $category)
+        <table class="table table-hover table-dark">
+            <thead>
                 <tr>
-                    <th scope="row">{{$category->id}}</th>
-                    <td>{{$category->categoryName}}</td>
-                    <td>
-                        <form  class="form-material form-delete"  action="{{ route('category.destroy', $category->id)}}", method="POST">
-                            <a class="btn waves-effect waves-light btn-danger" href="{{ route('category.edit', $category->id)}}"><i class="fa fa-pencil"></i></a>
-                            @csrf
-                            @method("DELETE")
-                            <button type="submit" class="btn waves-effect waves-light btn-success"><i class="fa fa-trash"></i></button>
-                        </form>
-                    </td>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Acción</th>
+                
                 </tr>
-            @endforeach
-           
-        </tbody>
-    </table>
-@if($containsPaginate)
-    <div class="d-flex justify-content-center">
-        {!! $categories->links() !!}
+            </thead>
+            <tbody>
+                @foreach($categories as $category)
+                    <tr>
+                        <th scope="row">{{$category->id}}</th>
+                        <td>{{$category->categoryName}}</td>
+                        <td>
+                            <form  class="form-material form-delete"  action="{{ route('category.destroy', $category->id)}}", method="POST">
+                                <a class="btn btn-outline-danger"  href="{{ route('category.edit', $category->id)}}"><i class="fa fa-pencil-alt"></i></a>
+                                @csrf
+                                @method("DELETE")
+                                <button type="submit" class="btn btn-outline-success"><i class="fa fa-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            
+            </tbody>
+        </table>
+        @if($containsPaginate)
+        <div class="d-flex justify-content-center">
+            {!! $categories->links() !!}
+        </div>
+        @endif
     </div>
-@endif
-</div>
+
+</x-adminlte-card>
 @include('sweetalert::alert')
 @endsection

@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
 
 @section("content")
+<x-adminlte-card title="Crear" theme="lightblue" theme-mode="outline"
+    icon="fas fa-lg  fa-list " class="mt-2">
 <div class="container">
     <h4 class="text-center">Nueva  categoria</h4>
     <form method="POST" action="{{route('category.store')}}">
@@ -16,10 +18,11 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Crear</button>
+            <button type="submit" class="btn btn-outline-primary btn-md">Crear</button>
             </div>
         </div>
     </form>
 </div>
+</x-adminlte-card>
 @include('sweetalert::alert')
 @endsection

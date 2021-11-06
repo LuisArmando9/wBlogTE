@@ -119,7 +119,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view("admin.Post.edit")
+        return view("admin.post.edit")
         ->with("post", $post)
         ->with("categories", Category::get(["id", "categoryName"]));
     }

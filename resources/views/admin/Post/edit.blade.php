@@ -1,7 +1,8 @@
 @extends('admin.layouts.app')
 @section("content")
+<x-adminlte-card title="Editar: {{$post->title}}" theme="lightblue" theme-mode="outline"
+    icon="fas fa-lg  fa-bookmark " class="mt-2">
 <div class="container">
-    <h4 class="text-center">ACTUALIZAR POST</h4>
     <form method="POST" action="{{route('post.update', $post->id)}}" enctype="multipart/form-data">
         @csrf
         @method("PUT")
@@ -26,7 +27,7 @@
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Categoria</label>
             <div class="col-sm-10">
-                <select class="form-select form-select-sm" name="categoryId" aria-label=".form-select-sm example">
+                <x-adminlte-select2  name="categoryId" >
                     @foreach($categories as $category)
                        @if($category->id == $post->categoryId)
                             <option value="{{$category->id}}" selected>{{$category->categoryName}}</option>
@@ -34,7 +35,7 @@
                             <option value="{{$category->id}}">{{$category->categoryName}}</option> 
                        @endif
                     @endforeach
-                </select>
+                </x-adminlte-select2>
 
             </div>
             @error("categoryId")
@@ -86,14 +87,7 @@
         </div>
     </form>
 </div>
+</x-adminlte-card>
 @include('sweetalert::alert')
 @endsection
-@section("custom-scripts")
-    <script src="{{asset('js/upload.js')}}"></script>
-    <script src="{{asset('js/checkbox.js')}}"></script>
-    <script>
-        $('#summernote').summernote({
-            height: 400
-        });
-    </script>
-@endsection
+
