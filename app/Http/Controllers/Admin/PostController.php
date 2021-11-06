@@ -61,7 +61,7 @@ class PostController extends Controller
             return redirect()->route("post.index")
             ->with("toast_error", "El texto ingresado es invalido");
         }
-        return view("admin.post.index")
+        return view("admin.Post.index")
         ->with("posts", Post::where("title", "LIKE", "%$search%")->get())
         ->with("containsPaginate", false);
         
