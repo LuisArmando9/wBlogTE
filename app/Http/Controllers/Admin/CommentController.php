@@ -124,6 +124,6 @@ class CommentController extends Controller
     {
         
         $comment->delete();
-        return redirect()->route("post.index");
+        return redirect()->route("comment.index");
     }
 }
