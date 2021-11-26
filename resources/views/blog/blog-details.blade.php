@@ -41,7 +41,7 @@
                             <div class="comment-body">
                                 <h3>{{$comment->userName}}</h3>
                             <div class="meta">
-                                {{date("y-m-d", strtotime($comment->created_at));}}
+                            {{hDParse($post->created_at);}}
                                
                             </div>
                             <p>
@@ -122,7 +122,7 @@
                                 <div>
                                     <a href="#">
                                         <span class="fa fa-calendar"></span>
-                                        {{date("y-m-d", strtotime($lastpost->created_at));}}
+                                        {{hDParse($post->created_at);}}
                                     </a>
                                 </div>
                                 <div>

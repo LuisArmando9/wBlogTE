@@ -21,7 +21,7 @@
                         <div class="meta mb-3">
                             <div>
                                 <a href="#">
-                                    {{date("y-m-d", strtotime($post->created_at));}}
+                                    {{hDParse($post->created_at);}}
                                 </a>
                             </div>
                         </div>

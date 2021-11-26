@@ -23,7 +23,7 @@
 					<div class="text d-flex py-4">
 						<div class="meta mb-3">
                             <div>
-                                <a href="#"> {{date("y-m-d", strtotime($post->created_at));}}</a>
+                                <a href="#">  {{hDParse($post->created_at);}}</a>
                             </div>
                             <div>
                                 <a href="#">{{$post->categoryName}}</a>

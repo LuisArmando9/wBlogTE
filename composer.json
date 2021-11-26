@@ -36,7 +36,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/HUrl.php"
+            "app/Helpers/HUrl.php",
+            "app/Helpers/HDate.php"
         ]
     },
     "autoload-dev": {
